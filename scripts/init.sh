@@ -23,8 +23,7 @@
 # run script sets the configurable parameters for the cartridge agent in agent.conf and
 # starts the cartridge agent process.
 
-echo "NAME=${UDARA}" >> /etc/environment
-echo "IS=${WSO2_IS_VERSION}" >> /etc/environment
+echo "NAME=${NAME}" >> /etc/environment
 
 echo "Starting WSO2 ESB..."
 ${CARBON_HOME}/bin/wso2server.sh
