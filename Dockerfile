@@ -36,7 +36,6 @@ ADD scripts/init.sh /usr/local/bin/init.sh
 ADD scripts/export-envs.sh /tmp/export-envs.sh
 ADD packages/${JDK_TAR_FILENAME} /opt/
 ADD packages/wso2is-${WSO2_IS_VERSION}.zip /opt/
-ADD packages/patches/ /opt/patches
 
 # -----------------------------
 # Install prerequisites and IS
@@ -53,7 +52,7 @@ RUN unzip /opt/wso2is-${WSO2_IS_VERSION}.zip -d /opt/ && \
 # Expose container ports
 # ----------------------
 
-# IS https port
+# IS https servlet transport port
 EXPOSE 9443
 
 # -------------------------------

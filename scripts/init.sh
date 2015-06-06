@@ -22,8 +22,23 @@
 
 # run script sets the configurable parameters for the cartridge agent in agent.conf and
 # starts the cartridge agent process.
+LOG=/tmp/script.log
+MOUNT_DIR=${MOUNT_DIR}
 
 echo "NAME=${NAME}" >> /etc/environment
 
-echo "Starting WSO2 ESB..."
-${CARBON_HOME}/bin/wso2server.sh
+echo "MOUNT_DIR=$MOUNT_DIR" >> $LOG
+
+echo "copying patches into the server" >> $LOG
+cp -r $MOUNT_DIR/patches/* ${CARBON_HOME}/repository/components/patches
+
+echo "copying lib into the server" >> $LOG
+cp -r $MOUNT_DIR/lib/* ${CARBON_HOME}/repository/components/lib
+
+
+echo "copying keystore into the server" >> $LOG
+cp $MOUNT_DIR/keys/wso2carbon.jks ${CARBON_HOME}/repository/resources/security/wso2carbon.jks
+sudo chmod +x ${CARBON_HOME}/repository/resources/security/wso2carbon.jks
+
+echo "Starting WSO2 ESB..." >> $LOG
+${CARBON_HOME}/bin/wso2server.sh -Dsetup
