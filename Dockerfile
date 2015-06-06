@@ -39,7 +39,7 @@ ADD packages/wso2is-${WSO2_IS_VERSION}.zip /opt/
 ADD packages/patches/ /opt/patches
 
 # -----------------------------
-# Install prerequisites and ESB
+# Install prerequisites and IS
 # -----------------------------
 WORKDIR /opt
 
@@ -53,7 +53,7 @@ RUN unzip /opt/wso2is-${WSO2_IS_VERSION}.zip -d /opt/ && \
 # Expose container ports
 # ----------------------
 
-# ESB https port
+# IS https port
 EXPOSE 9443
 
 # -------------------------------
